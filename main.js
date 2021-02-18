@@ -9,8 +9,3 @@ mic.addEventListener("click",()=>{
         document.getElementById("content").innerText +=data.results[0][0].transcript
     }
 })
-mic.addEventListener("dblclick",()=>{
-    const recog= new speechRecognition ();
-    recog.stop();
-    console.log("stopped")
-})
