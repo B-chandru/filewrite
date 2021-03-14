@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+      padding:0px;
+      margin: 0px;
+      box-sizing: border-box;
+        }
+        .container{
+            display: grid;
+            place-items: center;
+        }
+        .contain{
+            border: 2px solid red;
+            width: 300px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>speech to text</h1>
+        <div class="contain" contenteditable></div>
+    </div>
+     <script>
+         window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition ;
+
+         const recognition = new SpeechRecognition();
+          recognition.interimResults = true;
+
+          let p =document.createElement("p");
+          const contain = document.querySelector(".contain");
+          contain.appendChild(p);
+
+          recognition.addEventListener("result", e =>{
+              console.log(e.results)
+              const transcript =Array.from(e.results)
+              .map(result => result[0])
+              .map(result => result.transcript)
+              .join('')
+
+         p.textContent = transcript;
+         if(e.results[0].isFinal){
+             p = document.createElement("p");
+             contain.appendChild(P);
+         }
+         console.log(transcript)
+
+          })
+          
+          recognition.addEventListener("end",recognition.start);
+          recognition.start();
+     </script>
+</body>
+</html>
